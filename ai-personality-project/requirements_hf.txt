@@ -1,0 +1,7 @@
+# Hugging Face специфичные зависимости
+gradio==3.50.0
+transformers==4.30.0
+torch==2.0.1-cpu
+numpy==1.24.3
+sqlalchemy==2.0.15
+python-dotenv==1.0.0
