@@ -1,14 +1,15 @@
-from flask import Flask, request, jsonify
-from emotional_analysis.analyzer import EmotionAnalyzer
-from persona_management.manager import PersonaManager
-from shared.logger import setup_logger, get_logger
-from shared.schemas import EmotionAnalysisRequest, EmotionAnalysisResponse, ErrorResponse
-from shared.utils import generate_session_id, get_current_timestamp, safe_json_dumps
 import os
 import sys
 
+from flask import Flask, request, jsonify
+from emotional_analysis.analyzer import EmotionAnalyzer
+from persona_management.manager import PersonaManager
+from logger import setup_logger, get_logger
+from schemas import EmotionAnalysisRequest, EmotionAnalysisResponse, ErrorResponse
+from utils import generate_session_id, get_current_timestamp
+
 # Добавление пути к shared модулям
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'shared'))
 
 app = Flask(__name__)
 logger = get_logger(__name__)

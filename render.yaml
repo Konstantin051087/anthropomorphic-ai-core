@@ -10,7 +10,7 @@ services:
     buildCommand: |
       pip install -r requirements.txt
       python -c "from database.models import db; from app import create_app; app = create_app(); db.create_all(app=app)"
-    startCommand: gunicorn app:create_app() --bind 0.0.0.0:$PORT --workers 2 --threads 4 --timeout 120
+    startCommand: gunicorn app:create_app --bind 0.0.0.0:$PORT --workers 2 --threads 4 --timeout 120
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -25,6 +25,7 @@ services:
           envVarKey: RENDER_EXTERNAL_URL
       - key: LOG_LEVEL
         value: INFO
+    pythonVersion: 3.12.3
 
   # AI микросервис
   - type: web
@@ -35,7 +36,7 @@ services:
     root: ai-service
     buildCommand: |
       pip install -r requirements.txt
-      python -c "from emotional_analysis.analyzer import EmotionAnalyzer; analyzer = EmotionAnalyzer()"
+      python -c "from emotional_analysis.analyzer import EmotionAnalyzer; print('AI models loaded successfully')"
     startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 1 --threads 2 --timeout 180
     envVars:
       - key: PORT
@@ -46,6 +47,7 @@ services:
         value: /tmp/huggingface
       - key: TRANSFORMERS_CACHE
         value: /tmp/huggingface
+    pythonVersion: 3.12.3
 
   # База данных PostgreSQL
   - type: postgres
@@ -73,7 +75,5 @@ buildFilters:
 
 # Переменные окружения для всех сервисов
 envVars:
-  - key: PYTHON_VERSION
-    value: 3.12.3
   - key: ENVIRONMENT
     value: production

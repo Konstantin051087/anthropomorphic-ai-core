@@ -3,12 +3,57 @@ from transformers import pipeline, AutoTokenizer, AutoModelForSequenceClassifica
 from typing import List, Dict, Optional, Tuple
 import numpy as np
 from dataclasses import dataclass
-from shared.logger import get_logger
-from shared.schemas import EmotionLabel
 import os
-import json
+import sys
+
+# Добавление пути к shared модулям
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..', 'shared'))
+
+from logger import get_logger
+from schemas import EmotionLabel
 
 logger = get_logger(__name__)
+
+@dataclass
+class EmotionResult:
+    """Результат анализа эмоций"""
+    primary_emotion: EmotionLabel
+    confidence: float
+    emotional_scores: Dict[EmotionLabel, float]
+    processed_text: str
+
+class EmotionAnalyzer:
+    """Анализатор эмоций на основе трансформеров"""
+    
+    def __init__(self, model_name: str = "cointegrated/rubert-tiny2-cedr-emotion-detection"):
+        self.model_name = model_name
+        self.model = None
+        self.tokenizer = None
+        self.classifier = None
+        self.labels = [emotion.value for emotion in EmotionLabel]
+        self.load_models()
+    
+    def load_models(self):
+        """Загрузка моделей для анализа эмоций"""
+        try:
+            logger.info(f"Loading emotion model: {self.model_name}")
+            
+            # Используем pipeline для простоты
+            self.classifier = pipeline(
+                "text-classification",
+                model=self.model_name,
+                tokenizer=self.model_name,
+                top_k=None,  # Возвращает все классы
+                function_to_apply='softmax'
+            )
+            
+            logger.info("Emotion models loaded successfully")
+            
+        except Exception as e:
+            logger.error(f"Failed to load emotion models: {str(e)}")
+            # Создаем заглушку для тестирования
+            self.classifier = None
+            logger.info("Using fallback emotion analyzer")
 
 @dataclass
 class EmotionResult:
