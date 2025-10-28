@@ -7,7 +7,7 @@ services:
     region: frankfurt
     plan: free
     buildCommand: pip install -r web-service/requirements.txt
-    startCommand: cd web-service && gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120
+    startCommand: cd web-service && gunicorn app:app --bind 0.0.0.0:$PORT
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -30,7 +30,7 @@ services:
     region: frankfurt
     plan: free
     buildCommand: pip install -r ai-service/requirements.txt
-    startCommand: cd ai-service && gunicorn app:app --bind 0.0.0.0:$PORT --workers 1 --timeout 180
+    startCommand: cd ai-service && gunicorn app:app --bind 0.0.0.0:$PORT
     envVars:
       - key: LOG_LEVEL
         value: INFO
