@@ -41,9 +41,12 @@
    ```bash
    git clone https://github.com/your-username/emotional-ai-core.git
    cd emotional-ai-core
-
+   
+Настройка окружения
 cp .env.example .env
 # Отредактируйте .env файл с вашими настройками
+
+Установка зависимостей
 
 # Web Service
 cd web-service
@@ -53,8 +56,12 @@ pip install -r requirements.txt
 cd ../ai-service
 pip install -r requirements.txt
 
+Настройка базы данных
+
 cd ../web-service
 flask db upgrade
+
+Запуск сервисов
 
 # Terminal 1 - AI Service
 cd ai-service
@@ -65,24 +72,20 @@ cd web-service
 python app.py
 
 📚 API Документация
-
 Анализ эмоций
 Endpoint: POST /analyze
 
 Request:
 
 json
-
 {
   "text": "Я очень рад сегодняшнему дню!",
   "user_id": "user123",
   "persona": "empathetic"
 }
-
 Response:
 
 json
-
 {
   "session_id": "uuid-string",
   "emotion": "joy",
@@ -98,15 +101,12 @@ json
     "surprise": 0.03
   }
 }
-
 Доступные персонажи
-
 Endpoint: GET /personas
 
 Response:
 
 json
-
 {
   "personas": [
     {
@@ -125,9 +125,7 @@ json
 }
 
 🛠️ Развертывание
-
 Render (Web Service + Database)
-
 Fork репозитория на GitHub
 
 Создайте аккаунт на Render.com
@@ -137,7 +135,6 @@ Connect your repository в Render dashboard
 Автоматическое развертывание - Render автоматически обнаружит render.yaml
 
 Hugging Face (AI Service)
-
 Создайте Space на Hugging Face
 
 Выберите Docker как runtime
@@ -147,23 +144,16 @@ Hugging Face (AI Service)
 Деплой через Git push
 
 Google Cloud (Обучение моделей)
-
 bash
-
 # Активация Google Cloud SDK
-
 gcloud auth login
 
 # Запуск обучения
-
 cd notebooks
-
 python colab_training.py --config training_config.json
 
 🔧 Конфигурация
-
 Переменные окружения
-
 Ключевые переменные (полный список в .env.example):
 
 DATABASE_URL - PostgreSQL connection string
@@ -175,11 +165,9 @@ HF_API_TOKEN - Hugging Face API token
 EMOTION_MODEL_NAME - Модель для анализа эмоций
 
 Персонажи
-
 Система поддерживает настройку персонажей через shared/schemas.py:
 
 python
-
 PersonaConfig(
     name="creative",
     description="Креативный персонаж с богатым воображением",
@@ -193,17 +181,12 @@ PersonaConfig(
 )
 
 📊 Мониторинг
-
 Health Checks
-
 bash
-
 # Web Service
-
 curl https://your-web-service.render.com/health
 
 # AI Service
-
 curl https://your-ai-service.hf.space/health
 Метрики
 Система предоставляет метрики через:
@@ -215,7 +198,6 @@ Health check endpoints
 Prometheus metrics (в будущих версиях)
 
 🤝 Разработка
-
 Структура проекта
 text
 emotional-ai-core/
@@ -225,32 +207,23 @@ emotional-ai-core/
 ├── notebooks/            # Обучение моделей
 ├── scripts/              # Утилиты развертывания
 └── docs/                 # Документация
-
 Тестирование
-
 bash
-
 # Запуск тестов развертывания
-
 python scripts/deploy_check.py
 
 # Мониторинг здоровья
-
 python scripts/health_check.py --once
 Code Style
 bash
-
 # Форматирование кода
-
 black .
 flake8 .
 
 # Проверка типов
-
 mypy .
 
 🚧 Roadmap
-
 Поддержка мультиязычности
 
 Генерация эмоциональных ответов
@@ -262,11 +235,9 @@ mypy .
 Мобильное приложение
 
 📄 Лицензия
-
 MIT License - смотрите файл LICENSE для деталей.
 
 🤝 Вклад в проект
-
 Fork репозитория
 
 Создайте feature branch (git checkout -b feature/amazing-feature)
@@ -278,7 +249,6 @@ Push в branch (git push origin feature/amazing-feature)
 Откройте Pull Request
 
 📞 Поддержка
-
 Issues: GitHub Issues
 
 Email: your-email@example.com
@@ -291,3 +261,6 @@ Emotional AI Core - делаем ИИ более человечным 💫
 Документация •
 Примеры •
 Блог
+
+</div> ```
+Это завершает полную реализацию проекта Emotional AI Core. Все файлы готовы для развертывания на указанных платформах.

@@ -1,9 +1,11 @@
+import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..', 'shared'))
+
 from flask import request, jsonify
 from . import api_blueprint
-from shared.schemas import EmotionAnalysisRequest, EmotionAnalysisResponse
-from shared.logger import get_logger
+from logger import get_logger
 import requests
-import os
 
 logger = get_logger(__name__)
 
@@ -11,24 +13,26 @@ logger = get_logger(__name__)
 def analyze_emotion():
     try:
         data = request.get_json()
-        emotion_request = EmotionAnalysisRequest(**data)
         
-        # Вызов AI сервиса
+        if not data or 'text' not in data:
+            return {"error": "Missing 'text' in request"}, 400
+        
         ai_service_url = os.getenv('AI_SERVICE_URL', 'http://localhost:8001')
         response = requests.post(
             f"{ai_service_url}/analyze",
-            json=emotion_request.dict(),
+            json=data,
             timeout=30
         )
         
         if response.status_code == 200:
-            return jsonify(response.json()), 200
+            return response.json(), 200
         else:
-            return jsonify({"error": "AI service unavailable"}), 503
+            logger.error(f"AI service error: {response.status_code}")
+            return {"error": "AI service unavailable"}, 503
             
     except Exception as e:
         logger.error(f"Analysis error: {str(e)}")
-        return jsonify({"error": "Internal server error"}), 500
+        return {"error": "Internal server error"}, 500
 
 @api_blueprint.route('/sessions/<session_id>', methods=['GET'])
 def get_session(session_id):
@@ -37,11 +41,11 @@ def get_session(session_id):
     session = repo.get_by_id(session_id)
     
     if session:
-        return jsonify({
+        return {
             "id": session.id,
             "input_text": session.input_text,
             "emotion": session.emotion,
             "confidence": session.confidence,
             "created_at": session.created_at.isoformat()
-        })
-    return jsonify({"error": "Session not found"}), 404
+        }
+    return {"error": "Session not found"}, 404
