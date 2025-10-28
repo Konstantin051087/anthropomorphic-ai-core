@@ -1,5 +1,5 @@
 Flask==2.3.3
-torch==2.0.1
+torch==2.9.0
 transformers==4.31.0
 sentencepiece==0.1.99
 tokenizers==0.13.3
