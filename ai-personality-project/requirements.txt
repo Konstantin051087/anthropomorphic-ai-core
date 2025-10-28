@@ -15,7 +15,7 @@ transformers==4.30.0
 torch==2.9.0
 torchvision==0.24.0
 torchaudio==2.9.0
-numpy==1.26.0  # Обновленная версия для Python 3.13
+numpy==2.3.4  # Обновленная версия для Python 3.13
 
 # Утилиты
 requests==2.28.2
