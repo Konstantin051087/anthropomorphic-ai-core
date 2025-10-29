@@ -1,0 +1,17 @@
+fastapi
+uvicorn
+sqlalchemy
+alembic
+psycopg2-binary
+pydantic
+transformers
+torch
+gradio
+requests
+python-dotenv
+pytest
+pytest-asyncio
+httpx
+aiofiles
+jinja2
+python-multipart
