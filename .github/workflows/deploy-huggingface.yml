@@ -1,0 +1,66 @@
+me: Deploy to Hugging Face Spaces
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'interface/**'
+      - 'utils/**'
+      - 'requirements.txt'
+
+jobs:
+  deploy-to-spaces:
+    name: Deploy to Hugging Face
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.12"
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        
+    - name: Test interface components
+      run: |
+        python -c "
+        # Test Gradio interface components
+        try:
+            import gradio as gr
+            import requests
+            print('✅ Gradio and requests imported successfully')
+        except Exception as e:
+            print(f'❌ Interface dependency error: {e}')
+            exit(1)
+        "
+        
+    - name: Configure Git
+      run: |
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "github-actions[bot]"
+        
+    - name: Deploy to Hugging Face Spaces
+      env:
+        HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      run: |
+        # Clone the Hugging Face Space repository
+        git clone https://$HF_TOKEN@huggingface.co/spaces/your-username/anthropomorphic-ai-demo
+        
+        # Copy interface files
+        cp -r interface/* anthropomorphic-ai-demo/
+        cp requirements.txt anthropomorphic-ai-demo/
+        cp -r utils anthropomorphic-ai-demo/
+        
+        # Commit and push changes
+        cd anthropomorphic-ai-demo
+        git add .
+        git commit -m "Auto-deploy: $(date +'%Y-%m-%d %H:%M:%S')"
+        git push origin main

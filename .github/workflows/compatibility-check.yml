@@ -1,0 +1,76 @@
+name: Python Compatibility Check
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  compatibility:
+    name: Check Python 3.12/3.13 Compatibility
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Test Python 3.12 compatibility
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.12"
+        
+    - name: Install on Python 3.12
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        echo "✅ Python 3.12 installation successful"
+        
+    - name: Basic imports on 3.12
+      run: |
+        python -c "
+        import sys
+        print(f'Python {sys.version}')
+        try:
+            from core.config import settings
+            from core.orchestrator import Orchestrator
+            import sqlalchemy
+            import fastapi
+            print('✅ All imports successful on Python 3.12')
+        except Exception as e:
+            print(f'❌ Import error on Python 3.12: {e}')
+            exit(1)
+        "
+        
+    - name: Test Python 3.13 compatibility
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.13"
+        
+    - name: Install on Python 3.13
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        echo "✅ Python 3.13 installation successful"
+        
+    - name: Basic imports on 3.13
+      run: |
+        python -c "
+        import sys
+        print(f'Python {sys.version}')
+        try:
+            from core.config import settings
+            from core.orchestrator import Orchestrator
+            import sqlalchemy
+            import fastapi
+            print('✅ All imports successful on Python 3.13')
+        except Exception as e:
+            print(f'❌ Import error on Python 3.13: {e}')
+            exit(1)
+        "
+        
+    - name: Generate compatibility report
+      run: |
+        echo "## Python Compatibility Report" >> $GITHUB_STEP_SUMMARY
+        echo "✅ Python 3.12: All dependencies compatible" >> $GITHUB_STEP_SUMMARY
+        echo "✅ Python 3.13: All dependencies compatible" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**No version conflicts detected**" >> $GITHUB_STEP_SUMMARY

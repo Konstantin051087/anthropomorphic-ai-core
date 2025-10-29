@@ -2,15 +2,14 @@
 Configuration settings for the Anthropomorphic AI System
 """
 
-import os
-from typing import Dict, Any
-from pydantic import BaseSettings
+from pydantic_settings import BaseSettings
+from typing import Optional
 
 class Settings(BaseSettings):
     """Application settings"""
     
     # Database
-    database_url: str = os.getenv("DATABASE_URL", "sqlite:///./anthropomorphic_ai.db")
+    database_url: str = "sqlite:///./anthropomorphic_ai.db"
     
     # API
     api_host: str = "0.0.0.0"
@@ -18,12 +17,13 @@ class Settings(BaseSettings):
     debug: bool = False
     
     # Hugging Face
-    hf_token: str = os.getenv("HF_TOKEN", "")
+    hf_token: Optional[str] = None
     
     # Environment
-    environment: str = os.getenv("RENDER_ENV", "development")
+    environment: str = "development"
     
     class Config:
         env_file = ".env"
+        case_sensitive = False
 
 settings = Settings()
