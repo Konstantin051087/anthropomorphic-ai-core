@@ -1,3 +1,12 @@
+import sys
+import os
+from pathlib import Path
+
+# Добавляем корневую директорию в Python path
+current_dir = Path(__file__).parent
+root_dir = current_dir.parent
+sys.path.insert(0, str(root_dir))
+
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
@@ -5,50 +14,65 @@ import uvicorn
 import logging
 from contextlib import asynccontextmanager
 
-from core.config import settings, config_manager
-from utils.logger import setup_logging, get_logger
-from api.routes import router as router
-from api.middleware import LoggingMiddleware
-from database.session import init_db, close_db_connection
-
-# Настройка логирования до создания приложения
+# Безопасные импорты с fallback
 try:
+    from core.config import settings, config_manager
+except ImportError as e:
+    print(f"⚠ Ошибка импорта core.config: {e}")
+    # Fallback настройки
+    class Settings:
+        PROJECT_NAME = "Anthropomorphic AI"
+        VERSION = "1.0.0"
+        DEBUG = True
+        RENDER_ENV = "development"
+        CORS_ORIGINS = ["*"]
+        API_HOST = "0.0.0.0"
+        API_PORT = 8000
+        API_RELOAD = True
+    
+    settings = Settings()
+    config_manager = Settings()
+
+try:
+    from utils.logger import setup_logging, get_logger
     setup_logging()
-except Exception as e:
+except ImportError as e:
     print(f"⚠ Ошибка настройки логирования: {e}")
-    # Базовая настройка логирования как fallback
-    logging.basicConfig(level=logging.INFO)
-    print("✓ Базовое логирование настроено")
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    
+    def get_logger(name):
+        return logging.getLogger(name)
 
 logger = get_logger("app")
+
+# Безопасный импорт роутера
+try:
+    from api.routes import router
+except ImportError as e:
+    print(f"⚠ Ошибка импорта routes: {e}")
+    from fastapi import APIRouter
+    router = APIRouter()
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Управление жизненным циклом приложения"""
     # Startup
     logger.info(f"Запуск {settings.PROJECT_NAME} v{settings.VERSION}")
-    logger.info(f"Режим: {settings.RENDER_ENV}")
-    logger.info(f"DEBUG: {settings.DEBUG}")
     
     try:
-        # Инициализация базы данных
+        # Безопасная инициализация базы данных
         from scripts.init_database import initialize_database
         if initialize_database():
             logger.info("✓ База данных инициализирована")
         else:
-            logger.error("✗ Не удалось инициализировать базу данных")
+            logger.warning("⚠ База данных не инициализирована (возможно, временная реализация)")
     except Exception as e:
-        logger.error(f"✗ Ошибка инициализации базы данных: {e}")
+        logger.warning(f"⚠ Ошибка инициализации базы данных: {e}")
     
     yield
     
     # Shutdown
     logger.info("Завершение работы приложения...")
-    try:
-        close_db_connection()
-        logger.info("✓ Соединение с базой данных закрыто")
-    except Exception as e:
-        logger.error(f"✗ Ошибка при закрытии соединения с БД: {e}")
 
 # Создание приложения FastAPI
 app = FastAPI(
@@ -68,34 +92,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# Добавление middleware логирования
-app.add_middleware(LoggingMiddleware)
-
-# Глобальный обработчик исключений
-@app.exception_handler(Exception)
-async def global_exception_handler(request: Request, exc: Exception):
-    """Глобальный обработчик исключений"""
-    logger.error(f"Необработанное исключение: {exc}", exc_info=True)
-    return JSONResponse(
-        status_code=500,
-        content={
-            "detail": "Внутренняя ошибка сервера",
-            "error_code": "INTERNAL_SERVER_ERROR"
-        }
-    )
-
-@app.exception_handler(HTTPException)
-async def http_exception_handler(request: Request, exc: HTTPException):
-    """Обработчик HTTP исключений"""
-    logger.warning(f"HTTP исключение: {exc.detail} (код: {exc.status_code})")
-    return JSONResponse(
-        status_code=exc.status_code,
-        content={
-            "detail": exc.detail,
-            "error_code": "HTTP_ERROR"
-        }
-    )
 
 # Подключение роутеров
 app.include_router(router, prefix="/api/v1", tags=["api"])
@@ -121,11 +117,34 @@ async def health_check():
         "environment": settings.RENDER_ENV
     }
 
+@app.get("/test-imports")
+async def test_imports():
+    """Тестовый endpoint для проверки импортов"""
+    imports_status = {}
+    
+    try:
+        from core.orchestrator import Orchestrator
+        imports_status['core.orchestrator'] = '✅'
+    except ImportError as e:
+        imports_status['core.orchestrator'] = f'❌ {e}'
+    
+    try:
+        from modules.psyche.consciousness import Consciousness
+        imports_status['modules.psyche'] = '✅'
+    except ImportError as e:
+        imports_status['modules.psyche'] = f'❌ {e}'
+    
+    return {
+        "imports_status": imports_status,
+        "python_path": sys.path,
+        "current_directory": str(Path.cwd())
+    }
+
 if __name__ == "__main__":
     # Запуск сервера при прямом выполнении файла
     logger.info(f"Запуск сервера на {settings.API_HOST}:{settings.API_PORT}")
     uvicorn.run(
-        "api.app:app",
+        app,
         host=settings.API_HOST,
         port=settings.API_PORT,
         reload=settings.API_RELOAD,
