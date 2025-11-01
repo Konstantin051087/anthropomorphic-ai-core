@@ -1,12 +1,12 @@
-from sqlalchemy import create_engine
+# database/session.py
+from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker, declarative_base
 from core.config import settings
 import logging
 
 logger = logging.getLogger(__name__)
 
-# Создание базового класса для моделей
-Base = declarative_base()
+from database.models import Base
 
 # Создание движка БД
 try:
@@ -28,9 +28,6 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 def get_db():
     """
     Dependency для получения сессии БД
-    
-    Yields:
-        Session: Сессия базы данных
     """
     db = SessionLocal()
     try:
@@ -47,9 +44,6 @@ def init_db():
     Инициализация базы данных - создание таблиц
     """
     try:
-        # Импорт всех моделей для их регистрации
-        from database import models
-        
         # Создание всех таблиц
         Base.metadata.create_all(bind=engine)
         logger.info("Database tables created successfully")

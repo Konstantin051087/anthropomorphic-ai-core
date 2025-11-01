@@ -9,6 +9,7 @@ import subprocess
 import platform
 import logging
 from pathlib import Path
+from sqlalchemy import text
 
 # Добавление корневой директории в путь
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -91,15 +92,17 @@ class DeploymentValidator:
             else:
                 logger.info(f"✓ Переменная окружения: {var}")
     
-    def check_database_connection(self):
-        """Проверка подключения к базе данных"""
+    def check_database_connection():
+    """Проверка подключения к базе данных"""
         try:
             from database.session import engine
             with engine.connect() as conn:
-                conn.execute("SELECT 1")
-            logger.info("✓ Подключение к базе данных успешно")
-        except Exception as e:
-            self.errors.append(f"Ошибка подключения к базе данных: {e}")
+            result = conn.execute(text("SELECT 1"))
+        logger.info("✓ Подключение к базе данных успешно")
+        return True
+    except Exception as e:
+        logger.error(f"✗ Ошибка подключения к базе данных: {e}")
+        return False
     
     def check_directory_structure(self):
         """Проверка структуры директорий"""

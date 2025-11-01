@@ -8,8 +8,6 @@ from datetime import datetime
 
 from core.state_manager import state_manager
 from core.exceptions import ModuleInitializationError, ModuleExecutionError
-from database.session import get_db
-from database import crud
 from sqlalchemy.orm import Session
 
 logger = logging.getLogger(__name__)
@@ -28,9 +26,6 @@ class Orchestrator:
     def initialize(self) -> bool:
         """
         Инициализация всех модулей системы
-        
-        Returns:
-            bool: True если инициализация успешна
         """
         try:
             if self._initialized:
@@ -43,7 +38,6 @@ class Orchestrator:
             self._state_manager.set_state("active_modules", [])
             
             # TODO: Инициализация реальных модулей
-            # Пока используем заглушки
             self._modules = {
                 "core": {"status": "active"},
                 "api": {"status": "active"}, 
@@ -69,15 +63,6 @@ class Orchestrator:
                            db: Session = None) -> Dict[str, Any]:
         """
         Обработка входящего сообщения через все модули
-        
-        Args:
-            message: Текст сообщения
-            user_id: ID пользователя
-            session_id: ID сессии
-            db: Сессия базы данных
-            
-        Returns:
-            Dict с результатом обработки
         """
         try:
             logger.info(f"Обработка сообщения: '{message}'")
@@ -101,6 +86,7 @@ class Orchestrator:
             # Сохранение взаимодействия в БД
             if db:
                 try:
+                    from database import crud
                     crud.crud_interaction.create(db, {
                         "user_id": user_id,
                         "session_id": response_data["session_id"],
@@ -121,7 +107,6 @@ class Orchestrator:
     
     def _generate_response(self, message: str) -> str:
         """Генерация ответа на сообщение"""
-        # Временная логика ответа
         message_lower = message.lower()
         
         if any(word in message_lower for word in ["привет", "hello", "hi"]):
@@ -135,8 +120,6 @@ class Orchestrator:
     
     def _get_current_mood(self) -> str:
         """Получение текущего настроения системы"""
-        # Временная реализация
-        moods = ["neutral", "happy", "calm", "friendly"]
         return self._state_manager.get_state("current_mood", "neutral")
     
     async def store_memory(self, 
@@ -146,15 +129,6 @@ class Orchestrator:
                          db: Session = None) -> str:
         """
         Сохранение информации в память
-        
-        Args:
-            content: Содержимое для сохранения
-            memory_type: Тип памяти
-            importance: Важность информации
-            db: Сессия базы данных
-            
-        Returns:
-            ID сохраненной памяти
         """
         try:
             logger.info(f"Сохранение в память: {content[:50]}...")
@@ -164,6 +138,7 @@ class Orchestrator:
             
             if db:
                 try:
+                    from database import crud
                     crud.crud_memory.create(db, {
                         "content": content,
                         "memory_type": memory_type,
@@ -186,15 +161,6 @@ class Orchestrator:
                           db: Session = None) -> List[Dict[str, Any]]:
         """
         Поиск информации в памяти
-        
-        Args:
-            query: Запрос для поиска
-            memory_type: Тип памяти для фильтрации
-            limit: Лимит результатов
-            db: Сессия базы данных
-            
-        Returns:
-            Список найденных воспоминаний
         """
         try:
             logger.info(f"Поиск в памяти: '{query}'")
@@ -204,6 +170,8 @@ class Orchestrator:
             
             if db:
                 try:
+                    # ✅ ДОБАВИТЬ локальный импорт
+                    from database import crud
                     db_memories = crud.crud_memory.search(db, query, memory_type, limit)
                     memories = [
                         {

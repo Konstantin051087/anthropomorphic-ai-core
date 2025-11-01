@@ -7,6 +7,7 @@ import sys
 import os
 import logging
 from pathlib import Path
+from sqlalchemy import text
 
 # Добавление корневой директории в путь
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -31,7 +32,7 @@ def initialize_database():
         
         # Проверка подключения
         with engine.connect() as conn:
-            result = conn.execute("SELECT 1")
+            result = conn.execute(text("SELECT version()"))
             logger.info("✓ Подключение к базе данных успешно")
             
         return True
@@ -44,7 +45,7 @@ def check_database_connection():
     """Проверка подключения к базе данных"""
     try:
         with engine.connect() as conn:
-            conn.execute("SELECT 1")
+            conn.execute(text("SELECT version()"))
         logger.info("✓ Подключение к базе данных активно")
         return True
     except Exception as e:
