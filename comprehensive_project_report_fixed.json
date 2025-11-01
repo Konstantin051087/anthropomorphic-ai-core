@@ -1,0 +1,1468 @@
+{
+  "project": "Anthropomorphic AI Core",
+  "timestamp": "2025-10-31 23:57:17",
+  "python_version": "3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]",
+  "overall_status": "IN_PROGRESS",
+  "current_stage": "1.3 - Настройка инфраструктуры",
+  "stage_progress": {
+    "stage_1": {
+      "status": "IN_PROGRESS",
+      "tasks": {
+        "1.1": {
+          "name": "Инициализация проекта",
+          "status": "COMPLETED",
+          "subtasks": {
+            "1.1.1": {
+              "name": "Создание структуры каталогов",
+              "status": "COMPLETED",
+              "checks": [
+                {
+                  "directory": "api",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "directory": "core",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "directory": "modules",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "directory": "database",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "directory": "scripts",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "directory": "tests",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "directory": "data/configs",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "directory": "utils",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "directory": "docs",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "directory": ".github/workflows",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "file": "api/__init__.py",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "file": "api/app.py",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "file": "api/routes.py",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "file": "core/__init__.py",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "file": "core/config.py",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "file": "core/main.py",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "file": "requirements.txt",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "file": "README.md",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "file": ".gitignore",
+                  "exists": true,
+                  "status": "PASS"
+                }
+              ]
+            },
+            "1.1.2": {
+              "name": "Настройка окружения и зависимостей",
+              "status": "COMPLETED",
+              "checks": [
+                {
+                  "package": "fastapi",
+                  "found": true,
+                  "status": "PASS"
+                },
+                {
+                  "package": "uvicorn",
+                  "found": true,
+                  "status": "PASS"
+                },
+                {
+                  "package": "sqlalchemy",
+                  "found": true,
+                  "status": "PASS"
+                },
+                {
+                  "package": "pydantic",
+                  "found": true,
+                  "status": "PASS"
+                },
+                {
+                  "package": "pydantic-settings",
+                  "found": true,
+                  "status": "PASS"
+                },
+                {
+                  "check": "python_compatibility",
+                  "status": "PASS",
+                  "details": "Проверка совместимости версий Python"
+                },
+                {
+                  "package": "fastapi",
+                  "installed": true,
+                  "version": "0.120.1",
+                  "status": "PASS"
+                },
+                {
+                  "package": "uvicorn",
+                  "installed": true,
+                  "version": "0.38.0",
+                  "status": "PASS"
+                },
+                {
+                  "package": "sqlalchemy",
+                  "installed": true,
+                  "version": "2.0.44",
+                  "status": "PASS"
+                },
+                {
+                  "package": "pydantic",
+                  "installed": true,
+                  "version": "2.11.10",
+                  "status": "PASS"
+                }
+              ]
+            },
+            "1.1.3": {
+              "name": "Конфигурация документации",
+              "status": "COMPLETED",
+              "checks": [
+                {
+                  "file": "README.md",
+                  "exists": true,
+                  "size": 1465,
+                  "status": "PASS"
+                },
+                {
+                  "file": ".gitignore",
+                  "exists": true,
+                  "complete": true,
+                  "missing_patterns": [],
+                  "status": "PASS"
+                },
+                {
+                  "check": "license",
+                  "exists": true,
+                  "status": "PASS"
+                }
+              ]
+            },
+            "1.1.4": {
+              "name": "Настройка CI/CD",
+              "status": "COMPLETED",
+              "checks": [
+                {
+                  "workflow": "deploy.yml",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "workflow": "deploy-huggingface.yml",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "workflow": "ci-cd.yml",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "workflow": "training-trigger.yml",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "workflow": "compatibility-check.yml",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "expected_workflow": "ci-cd.yml",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "expected_workflow": "deploy.yml",
+                  "exists": true,
+                  "status": "PASS"
+                }
+              ]
+            }
+          },
+          "completion_percentage": 100.0
+        },
+        "1.2": {
+          "name": "Проектирование архитектуры",
+          "status": "IN_PROGRESS",
+          "subtasks": {
+            "1.2.1": {
+              "name": "Проектирование API endpoints",
+              "status": "IN_PROGRESS",
+              "checks": [
+                {
+                  "file": "api/__init__.py",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "file": "api/app.py",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "file": "api/routes.py",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "file": "api/models.py",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "file": "api/dependencies.py",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "file": "api/middleware.py",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "endpoint": "/chat",
+                  "implemented": true,
+                  "method": "POST",
+                  "status": "PASS"
+                },
+                {
+                  "endpoint": "/state",
+                  "implemented": true,
+                  "method": "GET",
+                  "status": "PASS"
+                },
+                {
+                  "endpoint": "/health",
+                  "implemented": true,
+                  "method": "GET",
+                  "status": "PASS"
+                },
+                {
+                  "endpoint": "/mood/update",
+                  "implemented": true,
+                  "method": "POST",
+                  "status": "PASS"
+                },
+                {
+                  "endpoint": "/memory/store",
+                  "implemented": true,
+                  "method": "POST",
+                  "status": "PASS"
+                },
+                {
+                  "endpoint": "/memory/recall",
+                  "implemented": true,
+                  "method": "POST",
+                  "status": "PASS"
+                },
+                {
+                  "endpoint": "/personality/update",
+                  "implemented": true,
+                  "method": "POST",
+                  "status": "PASS"
+                },
+                {
+                  "endpoint": "/modules",
+                  "implemented": true,
+                  "method": "GET",
+                  "status": "PASS"
+                },
+                {
+                  "endpoint": "/",
+                  "implemented": true,
+                  "method": "GET",
+                  "status": "PASS"
+                },
+                {
+                  "endpoint": "/system/info",
+                  "implemented": true,
+                  "method": "GET",
+                  "status": "PASS"
+                },
+                {
+                  "check": "api_functionality",
+                  "status": "FAIL"
+                }
+              ]
+            },
+            "1.2.2": {
+              "name": "Проектирование схемы БД",
+              "status": "COMPLETED",
+              "checks": [
+                {
+                  "file": "database/__init__.py",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "file": "database/models.py",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "file": "database/crud.py",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "file": "database/session.py",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "model": "SystemState",
+                  "implemented": true,
+                  "status": "PASS"
+                },
+                {
+                  "model": "Memory",
+                  "implemented": true,
+                  "status": "PASS"
+                },
+                {
+                  "model": "Interaction",
+                  "implemented": true,
+                  "status": "PASS"
+                },
+                {
+                  "model": "MoodHistory",
+                  "implemented": true,
+                  "status": "PASS"
+                },
+                {
+                  "model": "PersonalityTrait",
+                  "implemented": true,
+                  "status": "PASS"
+                },
+                {
+                  "model": "CharacterHabit",
+                  "implemented": true,
+                  "status": "PASS"
+                },
+                {
+                  "model": "LearningExperience",
+                  "implemented": true,
+                  "status": "PASS"
+                },
+                {
+                  "model": "SystemLog",
+                  "implemented": true,
+                  "status": "PASS"
+                },
+                {
+                  "check": "migrations_dir",
+                  "exists": true,
+                  "status": "PASS"
+                }
+              ]
+            },
+            "1.2.3": {
+              "name": "Форматы конфигурационных файлов",
+              "status": "COMPLETED",
+              "checks": [
+                {
+                  "file": "data/configs/system_config.json",
+                  "exists": true,
+                  "valid_json": true,
+                  "status": "PASS"
+                },
+                {
+                  "file": "data/configs/psyche_config.json",
+                  "exists": true,
+                  "valid_json": true,
+                  "status": "PASS"
+                },
+                {
+                  "file": "data/configs/memory_config.json",
+                  "exists": true,
+                  "valid_json": true,
+                  "status": "PASS"
+                },
+                {
+                  "file": "data/configs/mood_config.json",
+                  "exists": true,
+                  "valid_json": true,
+                  "status": "PASS"
+                },
+                {
+                  "file": "core/config.py",
+                  "exists": true,
+                  "has_settings": true,
+                  "has_config_manager": true,
+                  "status": "PASS"
+                }
+              ]
+            },
+            "1.2.4": {
+              "name": "Технические спецификации модулей",
+              "status": "COMPLETED",
+              "checks": [
+                {
+                  "file": "docs/architecture.md",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "file": "docs/api/endpoints.md",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "file": "docs/deployment/render.md",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "module": "modules/psyche",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "module": "modules/senses",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "module": "modules/mood",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "module": "modules/memory",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "module": "modules/reactions",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "module": "modules/personality",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "module": "modules/character",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "file": "core/orchestrator.py",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "file": "core/state_manager.py",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "file": "core/exceptions.py",
+                  "exists": true,
+                  "status": "PASS"
+                }
+              ]
+            }
+          },
+          "completion_percentage": 75.0
+        },
+        "1.3": {
+          "name": "Настройка инфраструктуры",
+          "status": "IN_PROGRESS",
+          "subtasks": {
+            "1.3.1": {
+              "name": "База данных на Render",
+              "status": "MANUAL_ACTION_REQUIRED",
+              "checks": [
+                {
+                  "check": "render_db_config",
+                  "has_postgresql": true,
+                  "has_database_config": true,
+                  "status": "PASS"
+                },
+                {
+                  "check": "env_db_config",
+                  "has_database_url": true,
+                  "has_db_config": true,
+                  "status": "PASS"
+                },
+                {
+                  "check": "render_db_creation",
+                  "status": "MANUAL_REQUIRED",
+                  "details": "Требуется ручная настройка в панели Render"
+                }
+              ]
+            },
+            "1.3.2": {
+              "name": "Настройка переменных окружения",
+              "status": "COMPLETED",
+              "checks": [
+                {
+                  "check": "env_example",
+                  "exists": true,
+                  "variables_found": 5,
+                  "variables_total": 5,
+                  "status": "PASS"
+                },
+                {
+                  "check": "local_env",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "check": "config_env_usage",
+                  "uses_env_vars": true,
+                  "status": "PASS"
+                }
+              ]
+            },
+            "1.3.3": {
+              "name": "Подготовка шаблонов для деплоя",
+              "status": "COMPLETED",
+              "checks": [
+                {
+                  "check": "render_yaml",
+                  "exists": true,
+                  "has_services": true,
+                  "has_build_command": true,
+                  "has_start_command": true,
+                  "status": "PASS"
+                },
+                {
+                  "check": "dockerfile",
+                  "exists": true,
+                  "has_from": true,
+                  "has_workdir": true,
+                  "has_copy": true,
+                  "has_requirements": true,
+                  "status": "PASS"
+                },
+                {
+                  "script": "scripts/deploy_render.sh",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "script": "scripts/setup_render.py",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "script": "scripts/validate_infrastructure.py",
+                  "exists": true,
+                  "status": "PASS"
+                },
+                {
+                  "check": "runtime_txt",
+                  "exists": true,
+                  "content": "python-3.13.4",
+                  "status": "PASS"
+                }
+              ]
+            }
+          },
+          "completion_percentage": 66.66666666666666
+        }
+      },
+      "completion_percentage": 33.33333333333333
+    }
+  },
+  "project_structure": {
+    "type": "directory",
+    "path": ".",
+    "files": [
+      {
+        "name": "requirements-compatible.txt",
+        "size": 94,
+        "modified": "Fri Oct 31 18:47:59 2025"
+      },
+      {
+        "name": "comprehensive_project_report_fixed.json",
+        "size": 44124,
+        "modified": "Fri Oct 31 23:32:52 2025"
+      },
+      {
+        "name": ".gitignore",
+        "size": 3236,
+        "modified": "Fri Oct 31 15:00:23 2025"
+      },
+      {
+        "name": "Dockerfile",
+        "size": 821,
+        "modified": "Fri Oct 31 14:45:32 2025"
+      },
+      {
+        "name": "runtime.txt",
+        "size": 13,
+        "modified": "Fri Oct 31 15:36:49 2025"
+      },
+      {
+        "name": "LICENSE",
+        "size": 1079,
+        "modified": "Fri Oct 31 14:36:26 2025"
+      },
+      {
+        "name": "requirements.txt",
+        "size": 187,
+        "modified": "Wed Oct 29 19:34:23 2025"
+      },
+      {
+        "name": "README.md",
+        "size": 1465,
+        "modified": "Wed Oct 29 18:21:15 2025"
+      },
+      {
+        "name": "Dockerfile.render",
+        "size": 668,
+        "modified": "Thu Oct 30 11:06:25 2025"
+      },
+      {
+        "name": ".env.example",
+        "size": 1466,
+        "modified": "Thu Oct 30 10:44:19 2025"
+      },
+      {
+        "name": "render.yaml",
+        "size": 2072,
+        "modified": "Thu Oct 30 11:04:59 2025"
+      },
+      {
+        "name": "pyproject.toml",
+        "size": 722,
+        "modified": "Wed Oct 29 18:22:37 2025"
+      },
+      {
+        "name": "compatibility.md",
+        "size": 946,
+        "modified": "Thu Oct 30 11:09:00 2025"
+      }
+    ],
+    "subdirs": {
+      "scripts": {
+        "type": "directory",
+        "path": "scripts",
+        "files": [
+          {
+            "name": "check_compatibility-2.0.py",
+            "size": 954,
+            "modified": "Wed Oct 29 21:16:42 2025"
+          },
+          {
+            "name": "init_database.py",
+            "size": 2148,
+            "modified": "Fri Oct 31 16:33:14 2025"
+          },
+          {
+            "name": "validate_infrastructure.py",
+            "size": 5843,
+            "modified": "Thu Oct 30 11:31:03 2025"
+          },
+          {
+            "name": "run_comprehensive_tests-2.0.py",
+            "size": 72140,
+            "modified": "Fri Oct 31 16:59:31 2025"
+          },
+          {
+            "name": "comprehensive_project_test-6.0.py",
+            "size": 71960,
+            "modified": "Fri Oct 31 19:26:19 2025"
+          },
+          {
+            "name": "validate_deployment.py",
+            "size": 6894,
+            "modified": "Fri Oct 31 14:46:34 2025"
+          },
+          {
+            "name": "check_compatibility-3.0.py",
+            "size": 1210,
+            "modified": "Wed Oct 29 22:28:49 2025"
+          },
+          {
+            "name": "create_render_db.py",
+            "size": 4503,
+            "modified": "Fri Oct 31 15:32:49 2025"
+          },
+          {
+            "name": "comprehensive_project_test-7.0.py",
+            "size": 75042,
+            "modified": "Fri Oct 31 20:15:37 2025"
+          },
+          {
+            "name": "comprehensive_project_test_final.py",
+            "size": 7392,
+            "modified": "Fri Oct 31 21:14:12 2025"
+          },
+          {
+            "name": "diagnose_endpoints-3.0.py",
+            "size": 6032,
+            "modified": "Fri Oct 31 20:33:51 2025"
+          },
+          {
+            "name": "check_environment.py",
+            "size": 3027,
+            "modified": "Wed Oct 29 20:34:50 2025"
+          },
+          {
+            "name": "comprehensive_stage1_test_fixed.py",
+            "size": 10268,
+            "modified": "Thu Oct 30 14:15:16 2025"
+          },
+          {
+            "name": "check_environment-2.0.py",
+            "size": 2357,
+            "modified": "Wed Oct 29 22:27:35 2025"
+          },
+          {
+            "name": "debug_database_metadata.py",
+            "size": 1499,
+            "modified": "Wed Oct 29 22:44:58 2025"
+          },
+          {
+            "name": "comprehensive_project_test.py",
+            "size": 63422,
+            "modified": "Fri Oct 31 07:51:46 2025"
+          },
+          {
+            "name": "fix_app_integration.py",
+            "size": 5512,
+            "modified": "Fri Oct 31 20:41:59 2025"
+          },
+          {
+            "name": "setup_paths.py",
+            "size": 447,
+            "modified": "Wed Oct 29 22:26:17 2025"
+          },
+          {
+            "name": "diagnose_endpoints.py",
+            "size": 5165,
+            "modified": "Fri Oct 31 20:25:16 2025"
+          },
+          {
+            "name": "comprehensive_project_test-3.0.py",
+            "size": 67055,
+            "modified": "Fri Oct 31 17:54:41 2025"
+          },
+          {
+            "name": "deploy_render.sh",
+            "size": 2502,
+            "modified": "Thu Oct 30 11:08:05 2025"
+          },
+          {
+            "name": "validate_architecture.py",
+            "size": 8849,
+            "modified": "Wed Oct 29 22:40:25 2025"
+          },
+          {
+            "name": "comprehensive_project_test-2.0.py",
+            "size": 45396,
+            "modified": "Fri Oct 31 12:07:23 2025"
+          },
+          {
+            "name": "check_compatibility.py",
+            "size": 846,
+            "modified": "Wed Oct 29 18:49:22 2025"
+          },
+          {
+            "name": "comprehensive_project_test-5.0.py",
+            "size": 47885,
+            "modified": "Fri Oct 31 19:03:25 2025"
+          },
+          {
+            "name": "comprehensive_project_test-4.0.py",
+            "size": 67167,
+            "modified": "Fri Oct 31 18:21:19 2025"
+          },
+          {
+            "name": "comprehensive_stage1_test.py",
+            "size": 44203,
+            "modified": "Thu Oct 30 14:41:36 2025"
+          },
+          {
+            "name": "fix_api_endpoints.py",
+            "size": 4381,
+            "modified": "Fri Oct 31 18:15:28 2025"
+          },
+          {
+            "name": "setup_render.py",
+            "size": 4624,
+            "modified": "Thu Oct 30 11:07:26 2025"
+          },
+          {
+            "name": "run_comprehensive_tests.py",
+            "size": 4821,
+            "modified": "Fri Oct 31 16:36:45 2025"
+          },
+          {
+            "name": "diagnose_endpoints-2.0.py",
+            "size": 13624,
+            "modified": "Fri Oct 31 20:28:27 2025"
+          },
+          {
+            "name": "comprehensive_project_test-8.0.py",
+            "size": 71669,
+            "modified": "Fri Oct 31 23:57:02 2025"
+          }
+        ],
+        "subdirs": {
+          "comprehensive_project_test": {
+            "type": "directory",
+            "path": "scripts/comprehensive_project_test",
+            "files": [
+              {
+                "name": "comprehensive_project_test.py",
+                "size": 63422,
+                "modified": "Fri Oct 31 07:51:46 2025"
+              },
+              {
+                "name": "comprehensive_project_test-3.0.py",
+                "size": 67055,
+                "modified": "Fri Oct 31 17:54:41 2025"
+              },
+              {
+                "name": "comprehensive_project_test-2.0.py",
+                "size": 45396,
+                "modified": "Fri Oct 31 12:07:23 2025"
+              },
+              {
+                "name": "comprehensive_project_test-4.0.py",
+                "size": 67167,
+                "modified": "Fri Oct 31 18:21:19 2025"
+              }
+            ],
+            "subdirs": {}
+          },
+          "cpt": {
+            "type": "directory",
+            "path": "scripts/cpt",
+            "files": [
+              {
+                "name": "comprehensive_project_test.py",
+                "size": 63422,
+                "modified": "Fri Oct 31 07:51:46 2025"
+              },
+              {
+                "name": "comprehensive_project_test-3.0.py",
+                "size": 67055,
+                "modified": "Fri Oct 31 17:54:41 2025"
+              },
+              {
+                "name": "comprehensive_project_test-2.0.py",
+                "size": 45396,
+                "modified": "Fri Oct 31 12:07:23 2025"
+              },
+              {
+                "name": "comprehensive_project_test-5.0.py",
+                "size": 48004,
+                "modified": "Fri Oct 31 18:45:02 2025"
+              },
+              {
+                "name": "comprehensive_project_test-4.0.py",
+                "size": 67167,
+                "modified": "Fri Oct 31 18:21:19 2025"
+              }
+            ],
+            "subdirs": {}
+          },
+          "validate": {
+            "type": "directory",
+            "path": "scripts/validate",
+            "files": [
+              {
+                "name": "validate_infrastructure.py",
+                "size": 5843,
+                "modified": "Thu Oct 30 11:31:03 2025"
+              },
+              {
+                "name": "validate_deployment.py",
+                "size": 6894,
+                "modified": "Fri Oct 31 14:46:34 2025"
+              },
+              {
+                "name": "validate_architecture.py",
+                "size": 8849,
+                "modified": "Wed Oct 29 22:40:25 2025"
+              }
+            ],
+            "subdirs": {}
+          },
+          "check": {
+            "type": "directory",
+            "path": "scripts/check",
+            "files": [
+              {
+                "name": "check_compatibility-2.0.py",
+                "size": 954,
+                "modified": "Wed Oct 29 21:16:42 2025"
+              },
+              {
+                "name": "check_compatibility-3.0.py",
+                "size": 1210,
+                "modified": "Wed Oct 29 22:28:49 2025"
+              },
+              {
+                "name": "check_environment.py",
+                "size": 3027,
+                "modified": "Wed Oct 29 20:34:50 2025"
+              },
+              {
+                "name": "check_environment-2.0.py",
+                "size": 2357,
+                "modified": "Wed Oct 29 22:27:35 2025"
+              },
+              {
+                "name": "check_compatibility.py",
+                "size": 846,
+                "modified": "Wed Oct 29 18:49:22 2025"
+              }
+            ],
+            "subdirs": {}
+          }
+        }
+      },
+      "data": {
+        "type": "directory",
+        "path": "data",
+        "files": [],
+        "subdirs": {
+          "configs": {
+            "type": "directory",
+            "path": "data/configs",
+            "files": [
+              {
+                "name": "psyche_config.json",
+                "size": 619,
+                "modified": "Wed Oct 29 21:56:44 2025"
+              },
+              {
+                "name": "system_config.json",
+                "size": 984,
+                "modified": "Thu Oct 30 11:02:30 2025"
+              },
+              {
+                "name": "memory_config.json",
+                "size": 510,
+                "modified": "Wed Oct 29 21:57:28 2025"
+              },
+              {
+                "name": "mood_config.json",
+                "size": 167,
+                "modified": "Thu Oct 30 11:03:47 2025"
+              }
+            ],
+            "subdirs": {}
+          },
+          "models": {
+            "type": "directory",
+            "path": "data/models",
+            "files": [],
+            "subdirs": {}
+          },
+          "training": {
+            "type": "directory",
+            "path": "data/training",
+            "files": [],
+            "subdirs": {}
+          }
+        }
+      },
+      ".github": {
+        "type": "directory",
+        "path": ".github",
+        "files": [],
+        "subdirs": {
+          "workflows": {
+            "type": "directory",
+            "path": ".github/workflows",
+            "files": [
+              {
+                "name": "deploy.yml",
+                "size": 1048,
+                "modified": "Fri Oct 31 14:39:14 2025"
+              },
+              {
+                "name": "deploy-huggingface.yml",
+                "size": 1823,
+                "modified": "Wed Oct 29 19:06:08 2025"
+              },
+              {
+                "name": "ci-cd.yml",
+                "size": 4612,
+                "modified": "Wed Oct 29 19:41:44 2025"
+              },
+              {
+                "name": "training-trigger.yml",
+                "size": 965,
+                "modified": "Wed Oct 29 19:06:47 2025"
+              },
+              {
+                "name": "compatibility-check.yml",
+                "size": 2298,
+                "modified": "Wed Oct 29 19:07:28 2025"
+              }
+            ],
+            "subdirs": {}
+          }
+        }
+      },
+      "core": {
+        "type": "directory",
+        "path": "core",
+        "files": [
+          {
+            "name": "orchestrator.py",
+            "size": 13213,
+            "modified": "Fri Oct 31 16:30:05 2025"
+          },
+          {
+            "name": "main.py",
+            "size": 773,
+            "modified": "Wed Oct 29 18:25:59 2025"
+          },
+          {
+            "name": "__init__.py",
+            "size": 49,
+            "modified": "Wed Oct 29 18:25:24 2025"
+          },
+          {
+            "name": "state_manager.py",
+            "size": 7391,
+            "modified": "Fri Oct 31 14:44:07 2025"
+          },
+          {
+            "name": "config.py",
+            "size": 5455,
+            "modified": "Fri Oct 31 16:15:30 2025"
+          },
+          {
+            "name": "exceptions.py",
+            "size": 4388,
+            "modified": "Fri Oct 31 14:44:44 2025"
+          }
+        ],
+        "subdirs": {}
+      },
+      "logs": {
+        "type": "directory",
+        "path": "logs",
+        "files": [
+          {
+            "name": "app.log",
+            "size": 51126,
+            "modified": "Fri Oct 31 23:32:52 2025"
+          }
+        ],
+        "subdirs": {}
+      },
+      "api": {
+        "type": "directory",
+        "path": "api",
+        "files": [
+          {
+            "name": "routes.py",
+            "size": 14308,
+            "modified": "Fri Oct 31 23:32:21 2025"
+          },
+          {
+            "name": "__init__.py",
+            "size": 41,
+            "modified": "Wed Oct 29 19:17:21 2025"
+          },
+          {
+            "name": "models.py",
+            "size": 3407,
+            "modified": "Fri Oct 31 14:41:01 2025"
+          },
+          {
+            "name": "openapi.py",
+            "size": 3863,
+            "modified": "Thu Oct 30 12:43:10 2025"
+          },
+          {
+            "name": "dependencies.py",
+            "size": 2729,
+            "modified": "Fri Oct 31 16:30:43 2025"
+          },
+          {
+            "name": "app.py",
+            "size": 4809,
+            "modified": "Fri Oct 31 23:08:16 2025"
+          },
+          {
+            "name": "middleware.py",
+            "size": 1049,
+            "modified": "Thu Oct 30 11:28:14 2025"
+          }
+        ],
+        "subdirs": {}
+      },
+      "database": {
+        "type": "directory",
+        "path": "database",
+        "files": [
+          {
+            "name": "session.py",
+            "size": 1892,
+            "modified": "Fri Oct 31 14:43:13 2025"
+          },
+          {
+            "name": "__init__.py",
+            "size": 502,
+            "modified": "Thu Oct 30 08:59:35 2025"
+          },
+          {
+            "name": "models.py",
+            "size": 6257,
+            "modified": "Thu Oct 30 09:08:42 2025"
+          },
+          {
+            "name": "crud.py",
+            "size": 6749,
+            "modified": "Fri Oct 31 14:42:38 2025"
+          }
+        ],
+        "subdirs": {
+          "migrations": {
+            "type": "directory",
+            "path": "database/migrations",
+            "files": [
+              {
+                "name": "alembic.ini",
+                "size": 2820,
+                "modified": "Wed Oct 29 21:54:14 2025"
+              }
+            ],
+            "subdirs": {
+              "versions": {
+                "type": "directory",
+                "path": "database/migrations/versions",
+                "files": [],
+                "subdirs": {}
+              }
+            }
+          }
+        }
+      },
+      "utils": {
+        "type": "directory",
+        "path": "utils",
+        "files": [
+          {
+            "name": "logger.py",
+            "size": 4147,
+            "modified": "Fri Oct 31 16:14:22 2025"
+          },
+          {
+            "name": "__init__.py",
+            "size": 55,
+            "modified": "Thu Oct 30 11:29:33 2025"
+          },
+          {
+            "name": "helpers.py",
+            "size": 641,
+            "modified": "Thu Oct 30 11:30:07 2025"
+          }
+        ],
+        "subdirs": {}
+      },
+      "tests": {
+        "type": "directory",
+        "path": "tests",
+        "files": [
+          {
+            "name": "__init__.py",
+            "size": 48,
+            "modified": "Wed Oct 29 19:08:23 2025"
+          },
+          {
+            "name": "test_basic_imports.py",
+            "size": 1250,
+            "modified": "Wed Oct 29 19:37:44 2025"
+          },
+          {
+            "name": "test_database_models.py",
+            "size": 3727,
+            "modified": "Thu Oct 30 08:30:51 2025"
+          },
+          {
+            "name": "test_imports_from_scripts.py",
+            "size": 2535,
+            "modified": "Thu Oct 30 08:58:53 2025"
+          }
+        ],
+        "subdirs": {
+          "test_modules": {
+            "type": "directory",
+            "path": "tests/test_modules",
+            "files": [],
+            "subdirs": {}
+          },
+          "test_core": {
+            "type": "directory",
+            "path": "tests/test_core",
+            "files": [
+              {
+                "name": "__init__.py",
+                "size": 25,
+                "modified": "Wed Oct 29 19:09:07 2025"
+              },
+              {
+                "name": "test_main.py",
+                "size": 891,
+                "modified": "Thu Oct 30 09:07:06 2025"
+              }
+            ],
+            "subdirs": {}
+          },
+          "test_integration": {
+            "type": "directory",
+            "path": "tests/test_integration",
+            "files": [],
+            "subdirs": {}
+          },
+          "test_api": {
+            "type": "directory",
+            "path": "tests/test_api",
+            "files": [
+              {
+                "name": "test_routes.py",
+                "size": 4679,
+                "modified": "Fri Oct 31 16:31:42 2025"
+              }
+            ],
+            "subdirs": {}
+          }
+        }
+      },
+      "docs": {
+        "type": "directory",
+        "path": "docs",
+        "files": [
+          {
+            "name": "architecture.md",
+            "size": 2017,
+            "modified": "Wed Oct 29 22:04:33 2025"
+          }
+        ],
+        "subdirs": {
+          "deployment": {
+            "type": "directory",
+            "path": "docs/deployment",
+            "files": [
+              {
+                "name": "render_database_setup.md",
+                "size": 1066,
+                "modified": "Fri Oct 31 14:47:29 2025"
+              },
+              {
+                "name": "render.md",
+                "size": 2074,
+                "modified": "Fri Oct 31 15:30:38 2025"
+              }
+            ],
+            "subdirs": {}
+          },
+          "api": {
+            "type": "directory",
+            "path": "docs/api",
+            "files": [
+              {
+                "name": "endpoints.md",
+                "size": 1066,
+                "modified": "Fri Oct 31 15:28:48 2025"
+              }
+            ],
+            "subdirs": {}
+          },
+          "modules": {
+            "type": "directory",
+            "path": "docs/modules",
+            "files": [
+              {
+                "name": "personality.md",
+                "size": 1653,
+                "modified": "Wed Oct 29 22:02:15 2025"
+              },
+              {
+                "name": "memory.md",
+                "size": 1246,
+                "modified": "Wed Oct 29 22:00:13 2025"
+              },
+              {
+                "name": "psyche.md",
+                "size": 1589,
+                "modified": "Wed Oct 29 21:59:21 2025"
+              },
+              {
+                "name": "mood.md",
+                "size": 1761,
+                "modified": "Wed Oct 29 22:01:16 2025"
+              }
+            ],
+            "subdirs": {}
+          }
+        }
+      },
+      "modules": {
+        "type": "directory",
+        "path": "modules",
+        "files": [],
+        "subdirs": {
+          "mood": {
+            "type": "directory",
+            "path": "modules/mood",
+            "files": [],
+            "subdirs": {}
+          },
+          "personality": {
+            "type": "directory",
+            "path": "modules/personality",
+            "files": [],
+            "subdirs": {}
+          },
+          "reactions": {
+            "type": "directory",
+            "path": "modules/reactions",
+            "files": [],
+            "subdirs": {}
+          },
+          "learning": {
+            "type": "directory",
+            "path": "modules/learning",
+            "files": [],
+            "subdirs": {}
+          },
+          "senses": {
+            "type": "directory",
+            "path": "modules/senses",
+            "files": [],
+            "subdirs": {}
+          },
+          "character": {
+            "type": "directory",
+            "path": "modules/character",
+            "files": [],
+            "subdirs": {}
+          },
+          "communication": {
+            "type": "directory",
+            "path": "modules/communication",
+            "files": [],
+            "subdirs": {}
+          },
+          "memory": {
+            "type": "directory",
+            "path": "modules/memory",
+            "files": [],
+            "subdirs": {}
+          },
+          "psyche": {
+            "type": "directory",
+            "path": "modules/psyche",
+            "files": [],
+            "subdirs": {}
+          }
+        }
+      }
+    }
+  },
+  "detailed_analysis": {},
+  "recommendations": [
+    "🚨 КРИТИЧЕСКИЕ ИСПРАВЛЕНИЯ ДЛЯ ЭНДПОИНТОВ:",
+    "✅ В routes.py все эндпоинты уже реализованы - проблема была в тестировании",
+    "🔧 Заменили AST-анализ на надежный regex-поиск эндпоинтов",
+    "🚀 Запустите сервер для проверки: python api/app.py",
+    "🌐 Протестируйте эндпоинты в браузере: http://localhost:8000/docs",
+    "🗄️ Создайте базу данных PostgreSQL в панели Render и настройте DATABASE_URL",
+    "🐍 ВЕРСИИ PYTHON - РЕШЕНИЕ:",
+    "1. Создайте файл requirements-compatible.txt с зафиксированными версиями:",
+    "   fastapi==0.104.1",
+    "   uvicorn==0.24.0",
+    "   sqlalchemy==2.0.23",
+    "   pydantic==2.5.0",
+    "   pydantic-settings==2.1.0",
+    "2. Протестируйте установку: pip install -r requirements-compatible.txt",
+    "3. Обновите runtime.txt: python-3.13.4",
+    "4. В render.yaml укажите: python -m pip install -r requirements-compatible.txt",
+    "🏗️ ЗАДАЧА 1.2 - СРОЧНЫЕ ИСПРАВЛЕНИЯ:",
+    "📝 Убедитесь, что все эндпоинты корректно работают",
+    "🔗 Интегрируйте эндпоинты с core/orchestrator.py",
+    "🧪 Протестируйте все эндпоинты через curl или Postman",
+    "📊 Убедитесь, что /state возвращает реальное состояние системы",
+    "⚙️ ЗАДАЧА 1.3 - ИНФРАСТРУКТУРА:",
+    "🐍 Установите Python 3.13.4 локально для тестирования совместимости",
+    "📦 Создайте виртуальное окружение с Python 3.13.4: python3.13 -m venv venv313",
+    "🔧 Запустите: source venv313/bin/activate && pip install -r requirements.txt",
+    "✅ Убедитесь, что все пакеты устанавливаются без ошибок",
+    "🔧 ДОПОЛНИТЕЛЬНЫЕ ИСПРАВЛЕНИЯ:",
+    "1. Убедитесь, что все временные реализации заменены на вызовы orchestrator",
+    "2. Добавьте обработку ошибок для отсутствующих модулей",
+    "3. Реализуйте настоящую логику для /memory/store и /memory/recall",
+    "4. Интегрируйте с database/models.py для хранения состояния"
+  ],
+  "score": {
+    "total_tests": 94,
+    "passed_tests": 88,
+    "success_rate": 93.62
+  }
+}

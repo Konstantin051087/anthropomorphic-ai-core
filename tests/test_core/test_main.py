@@ -14,10 +14,10 @@ def test_basic_import():
 def test_config_loading():
     """Test configuration loading"""
     from core.config import settings
-    assert hasattr(settings, 'database_url')
-    assert hasattr(settings, 'api_host')
-    assert hasattr(settings, 'api_port')
-    assert settings.api_port == 8000
+    assert hasattr(settings.database, 'url')
+    assert hasattr(settings.api, 'host')
+    assert hasattr(settings.api, 'port')
+    assert settings.api.port == 8000
 
 def test_orchestrator_initialization():
     """Test orchestrator can be initialized"""

@@ -1,0 +1,69 @@
+# Конфигурация деплоя для Render
+services:
+  # Основной веб-сервис
+  - type: web
+    name: anthropomorphic-ai-api
+    env: python
+    region: frankfurt  # или другой предпочтительный регион
+    plan: free  # начальный план, можно изменить на paid для продакшена
+    
+    # Настройки сборки
+    buildCommand: |
+      pip install -r requirements.txt
+      python -c "import core.config; print('Конфигурация проверена')"
+      
+    # Команда запуска
+    startCommand: |
+      python api/app.py
+      
+    # Переменные окружения для продакшена
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: DEBUG
+        value: false
+      - key: LOG_LEVEL
+        value: INFO
+      - key: API_HOST
+        value: 0.0.0.0
+      - key: API_PORT
+        value: 10000  # Render использует порт 10000
+      - key: API_WORKERS
+        value: 4
+      - key: SECRET_KEY
+        generateValue: true
+      - key: JWT_ALGORITHM
+        value: HS256
+      - key: JWT_EXPIRE_MINUTES
+        value: 30
+        
+    # Переменные из внешних источников
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: anthropomorphic-ai-db
+          property: connectionString
+      - key: HF_TOKEN
+        fromSecret: true
+        
+    # Health check
+    healthCheckPath: /health
+    initialDelaySec: 30
+
+  # База данных PostgreSQL
+  - type: postgresql
+    name: anthropomorphic-ai-db
+    plan: free  # начальный план
+    region: frankfurt
+    ipAllowList: []  # разрешить доступ только с Render
+    databaseName: anthropomorphic_ai
+    user: ai_user
+    
+    # Переменные базы данных
+    envVars:
+      - key: POSTGRES_DB
+        value: anthropomorphic_ai
+      - key: POSTGRES_USER
+        value: ai_user
+      - key: POSTGRES_PASSWORD
+        generateValue: true

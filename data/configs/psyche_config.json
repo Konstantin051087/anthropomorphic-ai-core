@@ -1,0 +1,25 @@
+{
+  "psyche": {
+    "consciousness": {
+      "self_awareness_level": 0.7,
+      "reflection_interval_seconds": 300,
+      "introspection_depth": 0.8
+    },
+    "subconscious": {
+      "background_processing": true,
+      "dream_simulation": false,
+      "associative_thinking": true
+    },
+    "decision_making": {
+      "rationality_weight": 0.6,
+      "emotional_weight": 0.3,
+      "intuitive_weight": 0.1,
+      "confidence_threshold": 0.6
+    },
+    "learning_parameters": {
+      "experience_absorption_rate": 0.8,
+      "pattern_recognition_sensitivity": 0.7,
+      "concept_formation_threshold": 0.5
+    }
+  }
+}

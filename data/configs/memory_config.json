@@ -1,0 +1,24 @@
+{
+  "memory": {
+    "short_term": {
+      "capacity": 20,
+      "decay_rate": 0.1,
+      "consolidation_threshold": 0.7
+    },
+    "long_term": {
+      "capacity": 1000,
+      "retention_period": 2592000,
+      "organization_strategy": "semantic"
+    },
+    "knowledge_base": {
+      "fact_retention": true,
+      "concept_mapping": true,
+      "inference_capability": true
+    },
+    "recall": {
+      "relevance_threshold": 0.3,
+      "association_strength": 0.6,
+      "context_sensitivity": 0.8
+    }
+  }
+}

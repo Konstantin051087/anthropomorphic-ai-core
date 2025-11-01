@@ -1,0 +1,8 @@
+{
+  "mood": {
+    "base_states": ["happy", "sad", "angry", "neutral", "excited"],
+    "decay_rate": 0.1,
+    "intensity_threshold": 0.3,
+    "update_interval": 5
+  }
+}
